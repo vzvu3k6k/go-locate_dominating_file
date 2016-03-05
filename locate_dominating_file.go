@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 )
 
-func isExist(_path string) bool {
+func exists(_path string) bool {
 	_, err := os.Stat(_path)
 	if err != nil {
 		return true
@@ -47,7 +47,7 @@ func main() {
 
 	var prevDir string
 	for dir := startDir; ; {
-		if isExist(filepath.Join(dir, wantPath)) {
+		if exists(filepath.Join(dir, wantPath)) {
 			fmt.Printf("%s\n", dir)
 			return
 		}
