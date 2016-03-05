@@ -9,10 +9,14 @@ import (
 )
 
 func isExist(_path string) bool {
-	if _, err := os.Stat(_path); err == nil {
+	_, err := os.Stat(_path)
+	if err != nil {
 		return true
 	}
-	return false
+	if os.IsNotExist(err) {
+		return false
+	}
+	panic(err)
 }
 
 func main() {
